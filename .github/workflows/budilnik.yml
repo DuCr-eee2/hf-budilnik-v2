@@ -1,0 +1,16 @@
+name: Budilnik
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restart HF Space
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.HF_TOKEN }}" \
+            https://huggingface.co/api/spaces/lbbcrf/vk-bot-v2/restart
